@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "*"
+
+[packages]
+pycryptodomex = "==3.9.9"
+pyOpenSSL = "==19.1.0"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
