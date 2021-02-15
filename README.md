@@ -61,14 +61,14 @@ order_string = wechatpay.pay_transactions_h5(
 
 - JSAPI支付 [pay/transactions/jsapi](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml)
 ```python
-order_string = wechatpay.pay/transactions/jsapi(
+order_string = wechatpay.pay_transactions_jsapi(
     description="test", out_trade_no="test0001", amount=1, payer="xxx"
 )
 ``` 
 
 - 小程序支付 [pay/transactions/jsapi](https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_5_1.shtml)
 ```python
-order_string = wechatpay.pay/transactions/jsapi(
+order_string = wechatpay.pay_transactions_jsapi(
     description="test", out_trade_no="test0001", amount=1, payer="xxx", tag="mini"
 )
 ``` 
