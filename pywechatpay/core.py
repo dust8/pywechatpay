@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 class WechatPay:
     """
- 
+
     加密：公钥加密，私钥解密；
     签名：私钥签名，公钥验签。
     """
@@ -35,7 +35,7 @@ class WechatPay:
         **kwargs,
     ):
         """https://pay.weixin.qq.com/wiki/doc/apiv3/wechatpay/wechatpay3_0.shtml
- 
+
         :param mchid: 商户号
         :param mch_private_key_string: 商户API私钥
         :param wechat_public_key_string: 平台公钥
@@ -71,7 +71,7 @@ class WechatPay:
     @staticmethod
     def generate_noncestr(k: int = 32):
         """生成随机串，随机串包含字母或数字
- 
+
         :param k: 长度
         :return:
         """
@@ -94,14 +94,14 @@ class WechatPay:
         nonce_str: str = None,
     ) -> str:
         """构造签名串
- 
+
         :param method:
         :param url_path:
         :param request_body:
         :param timestamp:
         :param nonce_str:
         :return:
- 
+
         https://pay.weixin.qq.com/wiki/doc/apiv3/wechatpay/wechatpay4_0.shtml
         """
         sign_list = [method, url_path, timestamp, nonce_str, request_body]
@@ -110,12 +110,12 @@ class WechatPay:
     @staticmethod
     def verify_sign_str(timestamp: str, nonce_str: str, response_body: str) -> str:
         """构造验签名串
- 
+
         :param timestamp:
         :param nonce_str:
         :param response_body:
         :return:
- 
+
         https://pay.weixin.qq.com/wiki/doc/apiv3/wechatpay/wechatpay4_1.shtml#part-2
         """
         sign_list = [timestamp, nonce_str, response_body]
@@ -124,7 +124,7 @@ class WechatPay:
     @staticmethod
     def get_serial_no(cert_pem_string: str) -> str:
         """获取证书序列号
- 
+
         :param cert_pem_string: 证书字符串
         :return: 证书序列号
         """
@@ -134,13 +134,13 @@ class WechatPay:
     @staticmethod
     def decrypt(key: str, nonce: str, ciphertext: str, associated_data: str) -> bytes:
         """证书和回调报文解密
- 
+
         :param key: APIv3密钥
         :param nonce:
         :param ciphertext:
         :param associated_data:
         :return:
- 
+
         https://pay.weixin.qq.com/wiki/doc/apiv3/wechatpay/wechatpay4_2.shtml
         """
         key_bytes = str.encode(key)
@@ -160,7 +160,7 @@ class WechatPay:
 
     def sign(self, sign_str: str) -> str:
         """计算签名值
- 
+
         :param sign_str:
         :return:
         """
@@ -187,7 +187,7 @@ class WechatPay:
         nonce_str: str = None,
     ) -> str:
         """设置HTTP头
- 
+
         :param method:
         :param url_path:
         :param request_body:
@@ -323,7 +323,7 @@ class WechatPay:
         **kwargs,
     ) -> dict:
         """公众号和小程序 统一下单API
- 
+
         :param description: 商品描述
         :param out_trade_no: 商户订单号
         :param amount: 订单总金额，单位为分
@@ -335,7 +335,7 @@ class WechatPay:
         :return:
         """
         content = {
-            "appid": self._mini_appid if tag == "mini" else self._offi_app_id,
+            "appid": self._mini_appid if tag == "mini" else self._offi_appid,
             "description": description,
             "out_trade_no": out_trade_no,
             "amount": {"total": amount, "currency": currency},
@@ -356,7 +356,7 @@ class WechatPay:
         **kwargs,
     ) -> dict:
         """app 统一下单API
- 
+
         :param description: 商品描述
         :param out_trade_no: 商户订单号
         :param amount: 订单总金额，单位为分
@@ -386,7 +386,7 @@ class WechatPay:
         **kwargs,
     ) -> dict:
         """h5 统一下单API
- 
+
         :param description: 商品描述
         :param out_trade_no: 商户订单号
         :param amount: 订单总金额，单位为分
@@ -408,7 +408,7 @@ class WechatPay:
 
     def pay_transactions_out_trade_no(self, out_trade_no: str) -> dict:
         """商户订单号查询
- 
+
         :param out_trade_no: 商户订单号
         :return:
         """
